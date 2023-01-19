@@ -1,8 +1,14 @@
-import logo from './logo.svg'
+import Header from './components/Header'
 import './App.css'
+import Main from './components/Main'
 
 function App() {
-  return <header className="App-header">Привет</header>
+  return (
+    <>
+      <Header />
+      <Main />
+    </>
+  )
 }
 
 export default App
