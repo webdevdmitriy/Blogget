@@ -5,7 +5,6 @@ export const Auth = () => {
   return (
     <button className={style.button}>
       <svg
-        className="className={style.photo}"
         width="128"
         height="128"
         viewBox="0 0 128 128"
