@@ -136,10 +136,10 @@
     "max-len": [
       "error",
       {
-        "code": 80,
+        "code": 120,
         "tabWidth": 2,
         "ignoreUrls": true,
-        "ignorePattern": "goog.(module|require)"
+        "ignorePattern": "goog.(module|require)|d=('|\").*('|\")"
       }
     ],
     "new-cap": "error",
