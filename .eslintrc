@@ -8,7 +8,12 @@
   "parserOptions": {
     "parser": "babel-eslint",
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
   },
   "rules": {
     "react/react-in-jsx-scope": "off",
@@ -136,7 +141,7 @@
     "max-len": [
       "error",
       {
-        "code": 120,
+        "code": 80,
         "tabWidth": 2,
         "ignoreUrls": true,
         "ignorePattern": "goog.(module|require)|d=('|\").*('|\")"
