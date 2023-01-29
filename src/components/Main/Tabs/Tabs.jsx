@@ -4,23 +4,25 @@ import {assignId} from '../../../utils/generateRandom';
 import {useState} from 'react';
 
 import {ReactComponent as ArrowIcon} from './img/arrow.svg';
-import {ReactComponent as EyeIcon} from './img/eye.svg';
 import {ReactComponent as HomeIcon} from './img/home.svg';
-import {ReactComponent as PostIcon} from './img/post.svg';
-import {ReactComponent as SaveIcon} from './img/save.svg';
+import {ReactComponent as TopIcon} from './img/top.svg';
+import {ReactComponent as BestIcon} from './img/best.svg';
+import {ReactComponent as HotIcon} from './img/hot.svg';
 import {useEffect} from 'react';
 import {debounceRaf} from '../../../utils/debounce';
+import Text from '../../UI/Text';
 
 const LIST = [
-  {value: 'Главная', Icon: EyeIcon},
-  {value: 'Просмотренные', Icon: HomeIcon},
-  {value: 'Сохраненные', Icon: PostIcon},
-  {value: 'Мои посты', Icon: SaveIcon},
+  {value: 'Главная', Icon: HomeIcon},
+  {value: 'Топ', Icon: TopIcon},
+  {value: 'Лучшие', Icon: BestIcon},
+  {value: 'Гоячие', Icon: HotIcon},
 ].map(assignId);
 
 export const Tabs = () => {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const [isDropDown, setIsDropDown] = useState(true);
+  const [currentMenuItem, setCurrentMenuItem] = useState(LIST[0].value);
 
   const handleResize = () => {
     if (document.documentElement.clientWidth < 768) {
@@ -46,7 +48,7 @@ export const Tabs = () => {
             className={style.btn}
             onClick={() => setIsDropDownOpen(!isDropDownOpen)}
           >
-            Добавить
+            {currentMenuItem}
             <ArrowIcon width={15} height={15} />
           </button>
         </div>
@@ -55,10 +57,15 @@ export const Tabs = () => {
         <ul className={style.list} onClick={() => setIsDropDownOpen(false)}>
           {LIST.map(({value, id, Icon}) => (
             <li className={style.item} key={id}>
-              <button className={style.btn} onClick={() => {}}>
+              <Text
+                As='button'
+                medium
+                className={style.btn}
+                onClick={() => setCurrentMenuItem(value)}
+              >
                 {value}
                 {Icon && <Icon width={30} height={30} />}
-              </button>
+              </Text>
             </li>
           ))}
         </ul>

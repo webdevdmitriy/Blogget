@@ -1,4 +1,5 @@
 import style from './Thumbnail.module.css';
+
 import notphoto from './img/notphoto.jpg';
 
 export const Thumbnail = () => {

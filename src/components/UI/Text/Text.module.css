@@ -94,6 +94,14 @@
   line-height: 16px;
 }
 
+.bold {
+  font-weight: bold;
+}
+
+.medium {
+  font-weight: 500;
+}
+
 @media (min-width: 768px) {
   .fst26 {
     font-size: 26px;
