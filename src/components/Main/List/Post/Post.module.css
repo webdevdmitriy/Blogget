@@ -28,7 +28,7 @@
 
 @media (min-width: 768px) {
   .post {
-    flex: 0 1 660px;
+    flex: 1 1 660px;
     grid-template-columns: 195px 1fr;
     gap: 10px;
     grid-template-rows: 1fr min-content;

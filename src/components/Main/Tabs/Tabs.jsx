@@ -16,7 +16,7 @@ const LIST = [
   {value: 'Главная', Icon: HomeIcon},
   {value: 'Топ', Icon: TopIcon},
   {value: 'Лучшие', Icon: BestIcon},
-  {value: 'Гоячие', Icon: HotIcon},
+  {value: 'Горячие', Icon: HotIcon},
 ].map(assignId);
 
 export const Tabs = () => {
@@ -29,6 +29,7 @@ export const Tabs = () => {
       setIsDropDown(true);
     } else {
       setIsDropDown(false);
+      setIsDropDownOpen(false);
     }
   };
 
@@ -61,7 +62,9 @@ export const Tabs = () => {
                 As='button'
                 medium
                 className={style.btn}
-                onClick={() => setCurrentMenuItem(value)}
+                onClick={() => {
+                  isDropDown && setCurrentMenuItem(value);
+                }}
               >
                 {value}
                 {Icon && <Icon width={30} height={30} />}
