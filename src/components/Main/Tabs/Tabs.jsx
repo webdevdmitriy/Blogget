@@ -63,7 +63,7 @@ export const Tabs = () => {
                 medium
                 className={style.btn}
                 onClick={() => {
-                  isDropDown && setCurrentMenuItem(value);
+                  setCurrentMenuItem(value);
                 }}
               >
                 {value}
