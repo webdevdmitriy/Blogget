@@ -18,10 +18,13 @@ export const useToken = (state) => {
   useEffect(() => {
     if (token) {
       localStorage.setItem('bearer', token);
-    } else {
-      localStorage.removeItem('bearer');
     }
   }, [token]);
 
-  return [token, setToken];
+  function delToken() {
+    setToken('');
+    localStorage.setItem('bearer', '');
+  }
+
+  return [token, delToken];
 };

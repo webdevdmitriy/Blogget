@@ -8,5 +8,5 @@ export const Heading = ({text}) => (
   </Text>
 );
 Heading.propTypes = {
-  text: ProTypes.text,
+  text: ProTypes.string,
 };

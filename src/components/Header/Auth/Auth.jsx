@@ -10,6 +10,11 @@ export const Auth = ({token, delToken}) => {
   const [auth, setAuth] = useState({});
   const [logout, setLogout] = useState(false);
 
+  const logOut = () => {
+    delToken();
+    setAuth({});
+  };
+
   useEffect(() => {
     if (!token) return;
     fetch(`${URL_API}/api/v1/me`, {
@@ -51,7 +56,7 @@ export const Auth = ({token, delToken}) => {
             <Text
               As='button'
               color='white'
-              onClick={delToken}
+              onClick={logOut}
               className={style.logout}
             >
               Выйти
