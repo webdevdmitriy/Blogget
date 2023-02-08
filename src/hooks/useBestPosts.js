@@ -3,7 +3,7 @@ import {URL_API} from '../api/const';
 import {tokenContext} from '../context/tokenContext';
 
 export const useBestPost = () => {
-  const [posts, setPosts] = useState({});
+  const [posts, setPosts] = useState([]);
   const {token} = useContext(tokenContext);
   useEffect(() => {
     if (!token) return;
@@ -21,20 +21,18 @@ export const useBestPost = () => {
       .then((data) => {
         const dataPost = data.data.children
           .map((post) => post.data)
-          .map(({thumbnail, title, author, ups, date}) => ({
+
+          .map(({thumbnail, title, author, ups, created_utc: date}) => ({
             thumbnail,
             title,
             author,
             ups,
             date,
           }));
-        // console.error('dataPost', dataPost);
-        console.log('pooooooooooooooooost', dataPost);
+
         setPosts(dataPost);
       })
-      .catch((err) => {
-        console.log('err', err);
-      });
+      .catch((err) => {});
   }, [token]);
 
   return [posts];

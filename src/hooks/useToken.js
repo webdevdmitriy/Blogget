@@ -4,7 +4,6 @@ export const useToken = (state) => {
 
   useEffect(() => {
     if (location.pathname.includes('/auth')) {
-      console.log('token');
       const token = new URLSearchParams(location.hash.substring(1)).get(
         'access_token'
       );

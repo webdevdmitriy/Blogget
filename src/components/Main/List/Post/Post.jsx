@@ -9,12 +9,12 @@ import DateTime from './DateTime';
 import DeleteButton from './DeleteButton';
 
 export const Post = ({postData}) => {
-  const {title, author, ups, date} = postData;
+  const {title, author, ups, date, thumbnail} = postData;
 
   return (
     <li className={style.post}>
       <Content title={title} author={author} />
-      <Thumbnail />
+      <Thumbnail thumbnail={thumbnail} />
       <Rating ups={ups} />
       <DateTime date={date} />
       <DeleteButton />

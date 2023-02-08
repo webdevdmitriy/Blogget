@@ -24,17 +24,17 @@
       'img rating data';
     min-height: 150px;
   }
-}
 
-@media (min-width: 768px) {
-  .post {
-    flex: 1 1 660px;
-    grid-template-columns: 195px 1fr;
-    gap: 10px;
-    grid-template-rows: 1fr min-content;
-    grid-template-areas:
-      'img content content'
-      'img rating data';
-    min-height: 195px;
+  @media (min-width: 768px) {
+    .post {
+      flex: 0 1 660px;
+      grid-template-columns: 195px 1fr;
+      gap: 10px;
+      grid-template-rows: 1fr min-content;
+      grid-template-areas:
+        'img content content'
+        'img rating data';
+      min-height: 195px;
+    }
   }
 }

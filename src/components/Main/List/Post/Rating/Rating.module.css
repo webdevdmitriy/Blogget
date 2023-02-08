@@ -32,6 +32,13 @@
 }
 
 @media (min-width: 580px) {
+  .rating {
+    padding-top: 0;
+    padding-bottom: 10px;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
   .up,
   .down {
     width: 24px;
@@ -45,13 +52,6 @@
 
   .up:hover,
   .down:hover {
-    outline-color: var(--orange);
-  }
-
-  .rating {
-    padding-top: 0;
-    padding-bottom: 10px;
-    flex-direction: row;
-    justify-content: flex-start;
+    outline-color: #cc6633;
   }
 }
