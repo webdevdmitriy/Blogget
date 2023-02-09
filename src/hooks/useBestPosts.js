@@ -21,14 +21,16 @@ export const useBestPost = () => {
       .then((data) => {
         const dataPost = data.data.children
           .map((post) => post.data)
-
-          .map(({thumbnail, title, author, ups, created_utc: date}) => ({
-            thumbnail,
-            title,
-            author,
-            ups,
-            date,
-          }));
+          .map(
+            ({thumbnail, title, author, ups, created_utc: date, selftext}) => ({
+              thumbnail,
+              title,
+              author,
+              ups,
+              date,
+              selftext,
+            })
+          );
 
         setPosts(dataPost);
       })
