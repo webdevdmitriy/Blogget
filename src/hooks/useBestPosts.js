@@ -22,13 +22,22 @@ export const useBestPost = () => {
         const dataPost = data.data.children
           .map((post) => post.data)
           .map(
-            ({thumbnail, title, author, ups, created_utc: date, selftext}) => ({
+            ({
+              thumbnail,
+              title,
+              author,
+              ups,
+              created_utc: date,
+              selftext,
+              id,
+            }) => ({
               thumbnail,
               title,
               author,
               ups,
               date,
               selftext,
+              id,
             })
           );
 

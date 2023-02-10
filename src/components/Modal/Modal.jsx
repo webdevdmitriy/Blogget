@@ -4,9 +4,15 @@ import {ReactComponent as CloseIcon} from './img/close.svg';
 import Markdown from 'markdown-to-jsx';
 import ReactDOM from 'react-dom';
 import {useEffect, useRef} from 'react';
+import {useCommentsData} from '../../hooks/useCommentsData';
+import Comments from './Comments';
+// import FormComments from './FormComments';
 
-export const Modal = ({title, author, markdown, closeModal}) => {
+export const Modal = ({title, author, markdown, closeModal, id}) => {
   const overlayRef = useRef(null);
+
+  const [comments] = useCommentsData(id);
+  // console.log('comments', comments);
 
   const handleClick = (e) => {
     const target = e.target;
@@ -43,6 +49,13 @@ export const Modal = ({title, author, markdown, closeModal}) => {
           </Markdown>
         </div>
         <p className={style.author}>{author}</p>
+        {/* <FormComments /> */}
+
+        {comments.length ? (
+          <Comments comments={comments} />
+        ) : (
+          <p>Загрузка...</p>
+        )}
 
         <button className={style.close} onClick={() => closeModal()}>
           <CloseIcon />

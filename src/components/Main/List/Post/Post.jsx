@@ -9,12 +9,19 @@ import DateTime from './DateTime';
 import DeleteButton from './DeleteButton';
 
 export const Post = ({postData}) => {
-  const {title, author, ups, date, thumbnail, selftext: markdown} = postData;
-  console.log('selftext', markdown);
+  const {
+    title,
+    author,
+    ups,
+    date,
+    thumbnail,
+    selftext: markdown,
+    id,
+  } = postData;
 
   return (
     <li className={style.post}>
-      <Content title={title} author={author} markdown={markdown} />
+      <Content title={title} author={author} markdown={markdown} id={id} />
       <Thumbnail thumbnail={thumbnail} />
       <Rating ups={ups} />
       <DateTime date={date} />
