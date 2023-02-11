@@ -29,7 +29,7 @@ export const useBestPost = () => {
               ups,
               created_utc: date,
               selftext,
-              id,
+              id: postId,
             }) => ({
               thumbnail,
               title,
@@ -37,7 +37,7 @@ export const useBestPost = () => {
               ups,
               date,
               selftext,
-              id,
+              postId,
             })
           );
 

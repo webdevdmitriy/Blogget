@@ -14,14 +14,13 @@ export const useCommentsData = (id) => {
       },
     })
       .then((response) => {
-        console.log(response);
         if (response.status === 401) {
           throw new Error(response.status);
         }
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        setCommentsData([data[0].data.children[0].data, data[1].data.children]);
       })
       .catch((err) => {
         console.error(err);

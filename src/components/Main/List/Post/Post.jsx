@@ -16,12 +16,17 @@ export const Post = ({postData}) => {
     date,
     thumbnail,
     selftext: markdown,
-    id,
+    postId,
   } = postData;
 
   return (
     <li className={style.post}>
-      <Content title={title} author={author} markdown={markdown} id={id} />
+      <Content
+        title={title}
+        author={author}
+        markdown={markdown}
+        postId={postId}
+      />
       <Thumbnail thumbnail={thumbnail} />
       <Rating ups={ups} />
       <DateTime date={date} />

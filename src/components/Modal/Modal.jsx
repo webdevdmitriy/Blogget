@@ -6,13 +6,13 @@ import ReactDOM from 'react-dom';
 import {useEffect, useRef} from 'react';
 import {useCommentsData} from '../../hooks/useCommentsData';
 import Comments from './Comments';
-// import FormComments from './FormComments';
+import FormComments from './FormComments';
 
-export const Modal = ({title, author, markdown, closeModal, id}) => {
+export const Modal = ({title, author, markdown, closeModal, postId}) => {
   const overlayRef = useRef(null);
 
-  const [comments] = useCommentsData(id);
-  // console.log('comments', comments);
+  const [comments] = useCommentsData(postId);
+  console.log('comments', comments);
 
   const handleClick = (e) => {
     const target = e.target;
@@ -49,7 +49,7 @@ export const Modal = ({title, author, markdown, closeModal, id}) => {
           </Markdown>
         </div>
         <p className={style.author}>{author}</p>
-        {/* <FormComments /> */}
+        <FormComments />
 
         {comments.length ? (
           <Comments comments={comments} />
