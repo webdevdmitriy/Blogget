@@ -20,7 +20,10 @@ export const useCommentsData = (id) => {
         return response.json();
       })
       .then((data) => {
-        setCommentsData([data[0].data.children[0].data, data[1].data.children]);
+        setCommentsData([
+          data[0].data.children[0].data,
+          data[1].data.children.filter((item) => item.kind === 't1'),
+        ]);
       })
       .catch((err) => {
         console.error(err);
