@@ -6,7 +6,7 @@ import {ReactComponent as LoginIcon} from './img/login.svg';
 import {useState, useContext} from 'react';
 import {authContext} from '../../../context/authContext';
 import {useDispatch} from 'react-redux';
-import {deleteToken} from '../../../store';
+import {deleteToken} from '../../../store/tokenReducer';
 
 export const Auth = () => {
   // const {delToken} = useContext(tokenContext);
