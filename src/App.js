@@ -2,7 +2,6 @@ import Header from './components/Header';
 import './App.css';
 import Main from './components/Main';
 
-import {AuthContextProvider} from './context/authContext';
 import {useDispatch} from 'react-redux';
 
 import {updateToken} from './store/tokenReducer';
@@ -13,10 +12,10 @@ function App() {
   dispatch(updateToken(getToken()));
 
   return (
-    <AuthContextProvider>
+    <>
       <Header />
       <Main />
-    </AuthContextProvider>
+    </>
   );
 }
 

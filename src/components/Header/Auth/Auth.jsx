@@ -3,27 +3,28 @@ import style from './Auth.module.css';
 import PropTypes from 'prop-types';
 import Text from '../../UI/Text';
 import {ReactComponent as LoginIcon} from './img/login.svg';
-import {useState, useContext} from 'react';
-import {authContext} from '../../../context/authContext';
+import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {deleteToken} from '../../../store/tokenReducer';
+import {useAuth} from '../../../hooks/useAuth';
+import Preloader from '../../../UI/Preloader';
 
 export const Auth = () => {
   // const {delToken} = useContext(tokenContext);
   const dispatch = useDispatch();
   const [logout, setLogout] = useState(false);
-  const {auth, clearAuth} = useContext(authContext);
+  const [auth, loading, clearAuth] = useAuth();
 
   const logOut = () => {
     // delToken();
     dispatch(deleteToken());
     clearAuth();
   };
-
   return (
     <div className={style.container}>
-      {/* <LoginIcon className={style.svg} /> */}
-      {auth.name ? (
+      {loading ? (
+        <Preloader />
+      ) : auth.name ? (
         <>
           <button className={style.btn}>
             <img

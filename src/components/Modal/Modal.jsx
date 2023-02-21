@@ -11,8 +11,8 @@ import FormComments from './FormComments';
 export const Modal = ({title, author, markdown, closeModal, postId}) => {
   const overlayRef = useRef(null);
 
-  const [comments] = useCommentsData(postId);
-  console.log('comments', comments);
+  const [comments, status] = useCommentsData(postId);
+  console.log(status);
 
   const handleClick = (e) => {
     const target = e.target;
@@ -32,34 +32,40 @@ export const Modal = ({title, author, markdown, closeModal, postId}) => {
   return ReactDOM.createPortal(
     <div className={style.overlay} ref={overlayRef}>
       <div className={style.modal}>
-        <h2 className={style.title}>{title}</h2>
-        <div className={style.content}>
-          <Markdown
-            options={{
-              overrides: {
-                a: {
-                  props: {
-                    target: '_blank',
+        {status === 'loading' && 'Загрузка....'}
+        {status === 'error' && 'Ошибка'}
+        {status === 'loaded' && (
+          <>
+            <h2 className={style.title}>{title}</h2>
+            <div className={style.content}>
+              <Markdown
+                options={{
+                  overrides: {
+                    a: {
+                      props: {
+                        target: '_blank',
+                      },
+                    },
                   },
-                },
-              },
-            }}
-          >
-            {markdown}
-          </Markdown>
-        </div>
-        <p className={style.author}>{author}</p>
-        <FormComments />
+                }}
+              >
+                {markdown}
+              </Markdown>
+            </div>
+            <p className={style.author}>{author}</p>
+            <FormComments />
 
-        {comments.length ? (
-          <Comments comments={comments} />
-        ) : (
-          <p>Загрузка...</p>
+            {comments.length ? (
+              <Comments comments={comments} />
+            ) : (
+              <p>Загрузка...</p>
+            )}
+
+            <button className={style.close} onClick={() => closeModal()}>
+              <CloseIcon />
+            </button>
+          </>
         )}
-
-        <button className={style.close} onClick={() => closeModal()}>
-          <CloseIcon />
-        </button>
       </div>
     </div>,
     document.getElementById('modal-root')

@@ -1,13 +1,18 @@
-import {useContext} from 'react';
-import {postsContext} from '../../../context/postContext';
+// import {useContext} from 'react';
+import {useBestPost} from '../../../hooks/useBestPosts';
+import Preloader from '../../../UI/Preloader';
 import {assignId} from '../../../utils/generateRandom';
 
 import style from './List.module.css';
 import Post from './Post';
 
 export const List = () => {
-  const {posts} = useContext(postsContext);
-  return (
+  const [posts, loading] = useBestPost();
+  console.log(loading);
+
+  return loading ? (
+    <Preloader />
+  ) : (
     <ul className={style.list}>
       {posts.map(assignId).map((item) => (
         <Post key={item.id} postData={item} />
