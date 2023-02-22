@@ -10,13 +10,14 @@ export const List = () => {
   const [posts, loading] = useBestPost();
   console.log(loading);
 
-  return loading ? (
-    <Preloader />
-  ) : (
-    <ul className={style.list}>
-      {posts.map(assignId).map((item) => (
-        <Post key={item.id} postData={item} />
-      ))}
-    </ul>
-  );
+  if (posts.length > 0) {
+    return (
+      <ul className={style.list}>
+        {posts.map(assignId).map((item) => (
+          <Post key={item.id} postData={item} />
+        ))}
+      </ul>
+    );
+  }
+  return loading && <Preloader />;
 };

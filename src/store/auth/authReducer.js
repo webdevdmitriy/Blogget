@@ -6,7 +6,7 @@ import {
 } from './action';
 
 const initialState = {
-  loading: true,
+  loading: false,
   data: {},
   error: '',
 };

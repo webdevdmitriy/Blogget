@@ -7,7 +7,7 @@ import {
 const initialState = {
   data: '',
   error: '',
-  loading: true,
+  loading: false,
 };
 
 export const postsReducer = (state = initialState, action) => {

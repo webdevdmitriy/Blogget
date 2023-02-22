@@ -28,7 +28,7 @@ export const authLogout = () => ({
 export const authRequestAsync = () => (dispatch, getState) => {
   const token = getState().tokenReducer.token;
   if (!token) return;
-  dispatch(authRequest);
+  dispatch(authRequest());
   axios(`${URL_API}/api/v1/me`, {
     headers: {
       Authorization: `bearer ${token}`,
