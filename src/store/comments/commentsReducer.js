@@ -5,7 +5,8 @@ import {
 } from './commentsAction';
 
 const initialState = {
-  data: '',
+  post: '',
+  comments: '',
   error: '',
   status: '',
 };
@@ -15,7 +16,8 @@ export const commentsReducer = (state = initialState, action) => {
     case COMMENTS_REQUEST:
       return {
         ...state,
-        data: {},
+        post: '',
+        comments: '',
         error: '',
         status: 'loading',
       };
@@ -23,7 +25,8 @@ export const commentsReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        data: action.data,
+        post: action.post,
+        comments: action.comments,
         error: '',
         status: 'loaded',
       };
@@ -33,6 +36,8 @@ export const commentsReducer = (state = initialState, action) => {
         loading: false,
         error: action.error,
         status: 'error',
+        post: '',
+        comments: '',
       };
     default:
       return state;

@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 
 export const useCommentsData = (id) => {
   const token = useSelector((state) => state.tokenReducer.token);
-  const comments = useSelector((state) => state.commentsReducer.data);
+  const post = useSelector((state) => state.commentsReducer.post);
+  const comments = useSelector((state) => state.commentsReducer.comments);
   const status = useSelector((state) => state.commentsReducer.status);
 
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ export const useCommentsData = (id) => {
     dispatch(commentsRequestAsync(id));
   }, [token]);
 
-  return [comments, status];
+  return [comments, post, status];
 };
 
 useCommentsData.propTypes = {

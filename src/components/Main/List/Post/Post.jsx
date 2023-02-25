@@ -13,10 +13,10 @@ export const Post = ({postData}) => {
     title,
     author,
     ups,
-    date,
+    created_utc: date,
     thumbnail,
     selftext: markdown,
-    postId,
+    id: postId,
   } = postData;
 
   return (

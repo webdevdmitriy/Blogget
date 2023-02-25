@@ -7,17 +7,24 @@ import {useEffect, useRef} from 'react';
 import {useCommentsData} from '../../hooks/useCommentsData';
 import Comments from './Comments';
 import FormComments from './FormComments';
+import {useNavigate, useParams} from 'react-router-dom';
 
-export const Modal = ({title, author, markdown, closeModal, postId}) => {
+export const Modal = () => {
   const overlayRef = useRef(null);
 
-  const [comments, status] = useCommentsData(postId);
+  const {id, page} = useParams();
+  const navigate = useNavigate();
+
+  const [comments, post, status] = useCommentsData(id);
+  const {author, title, selftext: markdown} = post;
+  console.log(post);
   console.log(status);
+  console.log(comments);
 
   const handleClick = (e) => {
     const target = e.target;
     if (target === overlayRef.current || e.key === 'Escape') {
-      closeModal();
+      navigate(`/categore/${page}`);
     }
   };
 
@@ -61,7 +68,12 @@ export const Modal = ({title, author, markdown, closeModal, postId}) => {
               <p>Загрузка...</p>
             )}
 
-            <button className={style.close} onClick={() => closeModal()}>
+            <button
+              className={style.close}
+              onClick={() => {
+                navigate(`/categore/${page}`);
+              }}
+            >
               <CloseIcon />
             </button>
           </>

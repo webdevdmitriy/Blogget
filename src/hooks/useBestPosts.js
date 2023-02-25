@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {postsRequestAsync} from '../store/posts/postsAction';
 
 export const useBestPost = () => {
-  const posts = useSelector((state) => state.postsReducer.data);
+  const posts = useSelector((state) => state.postsReducer.posts);
   const token = useSelector((state) => state.tokenReducer.token);
   const loading = useSelector((state) => state.postsReducer.loading);
 

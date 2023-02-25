@@ -8,9 +8,10 @@ export const COMMENTS_REQUEST_ERROR = 'COMMENTS_REQUEST_ERROR';
 export const commentsRequest = () => ({
   type: COMMENTS_REQUEST,
 });
-export const commentsRequestSuccess = (data) => ({
+export const commentsRequestSuccess = (post, comments) => ({
   type: COMMENTS_REQUEST_SUCCESS,
-  data,
+  post,
+  comments,
 });
 export const commentsRequestError = (error) => ({
   type: COMMENTS_REQUEST_ERROR,
@@ -21,6 +22,8 @@ export const commentsRequestAsync = (id) => (dispatch, getState) => {
   const token = getState().tokenReducer.token;
   if (!token) return;
   dispatch(commentsRequest());
+  console.log('id: ', id);
+  console.log('URL_API: ', URL_API);
   axios(`${URL_API}/comments/${id}`, {
     headers: {
       Authorization: `bearer ${token}`,
@@ -28,10 +31,10 @@ export const commentsRequestAsync = (id) => (dispatch, getState) => {
   })
     .then(({data}) => {
       dispatch(
-        commentsRequestSuccess([
+        commentsRequestSuccess(
           data[0].data.children[0].data,
-          data[1].data.children.filter((item) => item.kind === 't1'),
-        ])
+          data[1].data.children.filter((item) => item.kind === 't1')
+        )
       );
     })
     .catch((err) => {

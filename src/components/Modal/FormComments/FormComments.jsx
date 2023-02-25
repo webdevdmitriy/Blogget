@@ -9,6 +9,7 @@ export const FormComments = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(value);
   };
   const handleChange = (e) => {
     // setValue(e.target.value);
