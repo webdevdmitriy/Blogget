@@ -1,9 +1,10 @@
 import style from './Logo.module.css';
 
 import {ReactComponent as LogoIcon} from './img/logo.svg';
+import {Link} from 'react-router-dom';
 
 export const Logo = () => (
-  <a className={style.link} href='/'>
+  <Link className={style.link} to='/'>
     <LogoIcon className={style.logo} />
-  </a>
+  </Link>
 );
