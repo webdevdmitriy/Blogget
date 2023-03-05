@@ -71,7 +71,7 @@ export const Modal = () => {
             <button
               className={style.close}
               onClick={() => {
-                navigate(`/categore/${page}`);
+                navigate(`/category/${page}`);
               }}
             >
               <CloseIcon />
