@@ -1,9 +1,10 @@
 // import {useContext} from 'react';
 import {useEffect, useRef} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Outlet, useParams} from 'react-router-dom';
-import {useBestPost} from '../../../hooks/useBestPosts';
+// import {useBestPost} from '../../../hooks/useBestPosts';
 import {postsRequestAsync} from '../../../store/posts/postsAction';
+import {postsSlice} from '../../../store/posts/postsSlice';
 import Preloader from '../../../UI/Preloader';
 import {assignId} from '../../../utils/generateRandom';
 
@@ -11,15 +12,19 @@ import style from './List.module.css';
 import Post from './Post';
 
 export const List = () => {
-  const [posts, loading] = useBestPost();
+  // const [posts, loading] = useBestPost();
+  const posts = useSelector((state) => state.postsReducer.posts);
+  const loading = useSelector((state) => state.postsReducer.loading);
+  const token = useSelector((state) => state.tokenReducer.token);
 
   const endList = useRef(null);
   const dispatch = useDispatch();
   const {page} = useParams();
 
   useEffect(() => {
+    dispatch(postsSlice.actions.changePage(page));
     dispatch(postsRequestAsync(page));
-  }, [page]);
+  }, [page, token]);
 
   useEffect(() => {
     if (!posts.length) return;
