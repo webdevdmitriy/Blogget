@@ -27,6 +27,7 @@ export const postsSlice = createSlice({
       state.error = '';
     },
     [postsRequestAsync.fulfilled.type]: (state, action) => {
+      console.log(action.payload);
       state.loading = false;
       state.posts = action.payload.posts;
       state.error = '';
@@ -35,7 +36,7 @@ export const postsSlice = createSlice({
     },
     [postsRequestAsync.rejected.type]: (state, action) => {
       state.loading = false;
-      state.error = action.error;
+      state.error = action.payload.error;
     },
   },
 });

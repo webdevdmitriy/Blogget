@@ -4,7 +4,7 @@ import {URL_API} from '../../api/const';
 
 export const postsRequestAsync = createAsyncThunk(
   'posts/fetch',
-  (newPage, {getState}) => {
+  (newPage, {getState, rejectWithValue}) => {
     let page = getState().postsReducer.page;
 
     if (newPage) {
@@ -15,11 +15,8 @@ export const postsRequestAsync = createAsyncThunk(
     const after = getState().postsReducer.after;
     const isLast = getState().postsReducer.isLast;
 
-    console.log(token);
-
-    if (!token || isLast) return;
-
-    console.log(token);
+    if (!token) return rejectWithValue({error: 'Ошибка авторизации'});
+    if (isLast) return getState().postsReducer.posts;
 
     return axios(
       `${URL_API}/${page}?limit=10&${after ? `after=${after}` : ''}`,
@@ -27,7 +24,8 @@ export const postsRequestAsync = createAsyncThunk(
         headers: {
           Authorization: `bearer ${token}`,
         },
-      }
+      },
+      {rejectWithValue}
     )
       .then(({data}) => {
         let newPosts = data.data.children;
@@ -38,9 +36,9 @@ export const postsRequestAsync = createAsyncThunk(
         console.log(newPosts);
         return {posts: newPosts, after: data.data.after};
       })
-      .catch((err) => {
-        console.error(err);
-        return {err: err.toString()};
+      .catch((error) => {
+        console.error(error);
+        return rejectWithValue({error: error.toString()});
       });
   }
 );
